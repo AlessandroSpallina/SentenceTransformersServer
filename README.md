@@ -15,9 +15,9 @@ git clone https://github.com/AlessandroSpallina/SentenceTransformersServer.git
 
 Choose the model you want to use for the embedding, [here](https://www.sbert.net/docs/pretrained_models.html#sentence-embedding-models/) all the supported models from SentenceTransformers.
 
-Keep in mind that the right model to pick mostly depends on your use case and your data, so try some similarity search in order to understand which model fits better your needs. For example you can start by comparing [all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2) and [all-mpnet-base-v2](https://huggingface.co/sentence-transformers/all-mpnet-base-v2).
+Keep in mind that the right model to pick mostly depends on your use case and your data, so try some similarity search in order to understand which model fits better your needs. For example you can start by comparing [all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2) and [all-mpnet-base-v2](https://huggingface.co/sentence-transformers/all-mpnet-base-v2). You might want to check [this leaderboard](https://huggingface.co/spaces/mteb/leaderboard) too.
 
-When you are done, modify the model name in the .env file. If you are behind a corporate proxy remember to uncomment the right section in the docker-compose.yml file.
+When you are done, rename the .env.example to .env and modify the model name accordingly. If you are behind a corporate proxy remember to uncomment the right section in the docker-compose.yml file.
 
 Then impose your hands on the keyboard, close your eyes and 
 ```bash

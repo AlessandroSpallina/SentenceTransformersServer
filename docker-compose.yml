@@ -1,7 +1,4 @@
-version: '3.7'
-
 services:
-
   sentence-transformers-server:
     build:
       context: ./server
@@ -23,6 +20,7 @@ services:
       - ${STS_PORT:-8081}:8081
     volumes:
       - ./server:/code/server
+      - ./models:/code/server/models
     command:
       - uvicorn
       - main:app

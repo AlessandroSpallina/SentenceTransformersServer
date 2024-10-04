@@ -33,6 +33,11 @@ async def read_root():
 
 @app.post("/v1/embeddings")
 async def create_embeddings(request: EmbeddingRequest):
+
+    # model.encode() doens't support strings with only space, below a workaround
+    if request.input == ' ':
+        request.input = '.'
+
     embeddings = model.encode(request.input).tolist()
 
     if type(embeddings[0]) == list:

@@ -11,12 +11,13 @@ import sys
 app = FastAPI(title="SentenceTransformersServer")
 model = SentenceTransformer(os.environ['MODEL'], cache_folder='/code/server/models', device="cuda")
 
+logFormatter = logging.Formatter("%(asctime)s - [%(levelname)s] %(name)s [%(module)s.%(funcName)s:%(lineno)d]: %(message)s")
 console_handler = logging.StreamHandler(stream=sys.stdout)
+console_handler.setFormatter(logFormatter)
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 logger.addHandler(console_handler)
-
 
 # Enable CORS
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])

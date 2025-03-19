@@ -49,7 +49,7 @@ class EmbeddingRequest(BaseModel):
 
 
 @app.get("/")
-async def read_root():
+def read_root():
     return {"status": "up"}
 
 

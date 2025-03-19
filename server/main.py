@@ -5,9 +5,17 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from typing import Union
 from sentence_transformers import SentenceTransformer
+import logging
+import sys
 
 app = FastAPI(title="SentenceTransformersServer")
-model = SentenceTransformer(os.environ['MODEL'], cache_folder='/code/server/models')
+model = SentenceTransformer(os.environ['MODEL'], cache_folder='/code/server/models', device="cuda")
+
+console_handler = logging.StreamHandler(stream=sys.stdout)
+
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+logger.addHandler(console_handler)
 
 
 # Enable CORS
@@ -31,8 +39,10 @@ class EmbeddingRequest(BaseModel):
 async def read_root():
     return {"status": "up"}
 
+
 @app.post("/v1/embeddings")
 async def create_embeddings(request: EmbeddingRequest):
+    logger.info(f"Received {request}")
 
     # model.encode() doens't support strings with only space, below a workaround
     if request.input == ' ':

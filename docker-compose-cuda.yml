@@ -23,12 +23,17 @@ services:
       - ./models:/code/server/models
     command:
       - uvicorn
-      - --workers
-      - "20"
       - main:app
       - --host
       - "0.0.0.0"
       - --port
       - "8081"
-      # - --reload # take away in prod
+      - --reload # take away in prod
     restart: unless-stopped
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [ gpu ]

@@ -4,18 +4,19 @@ services:
       context: ./server
       # if you are behind a corporate proxy uncomment below to pass these values at container build time
       # args:
-      #   - HTTP_PROXY=http://X.X.X.X:Y
-      #   - HTTPS_PROXY=http://X.X.X.X:Y
-      #   - http_proxy=http://X.X.X.X:Y
-      #   - https_proxy=http://X.X.X.X:Y
+      #   - HTTP_PROXY
+      #   - HTTPS_PROXY
+      #   - NO_PROXY
     container_name: sentence_transformers_server
     environment:
       - MODEL=${MODEL}
       # if you are behind a corporate proxy uncomment below to pass these values during the container execution
-      # - HTTP_PROXY=http://X.X.X.X:Y
-      # - HTTPS_PROXY=http://X.X.X.X:Y
-      # - http_proxy=http://X.X.X.X:Y
-      # - https_proxy=http://X.X.X.X:Y
+      # - HTTP_PROXY
+      # - HTTPS_PROXY
+      # - NO_PROXY
+      # - http_proxy
+      # - https_proxy
+      # - no_proxy
     ports:
       - ${STS_PORT:-8081}:8081
     volumes:
